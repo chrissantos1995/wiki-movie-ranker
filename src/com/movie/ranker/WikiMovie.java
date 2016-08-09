@@ -218,7 +218,7 @@ public class WikiMovie implements Comparable<WikiMovie> {
 				datePoints = 10;
 				break;		
 			case "january" :
-				datePoints = -10;
+				datePoints = -20;
 				break;
 			case "february" :
 				datePoints = -5;
