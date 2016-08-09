@@ -11,7 +11,7 @@
 
 	<servlet>
 	   <servlet-name>HttpMovieRanker</servlet-name>
-	   <servlet-class>HttpMovieRanker</servlet-class>
+	   <servlet-class>com.movie.ranker.HttpMovieRanker</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
