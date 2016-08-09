@@ -1,7 +1,12 @@
 {
 "version": 3,
+<<<<<<< HEAD
 "mappings": "",
 "sources": [],
+=======
+"mappings": "AAAQ,uEAA+D",
+"sources": ["style.scss"],
+>>>>>>> 9564a1cc70df3a61a7842800dffa96e6739ca776
 "names": [],
 "file": "style.css"
 }
