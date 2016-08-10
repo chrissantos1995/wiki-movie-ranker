@@ -42,6 +42,7 @@ public class WikiMovie implements Comparable<WikiMovie> {
 	public int directorAwardCount = 0;
 	public String posterUrl = "";
 	public int releaseDatePoints = 0;
+	public String directorName = "";
 
 	// Constructors
 
@@ -69,6 +70,7 @@ public class WikiMovie implements Comparable<WikiMovie> {
 		directorAwardCount = getDirectorAwardCount(url);
 		releaseDatePoints = releasedDuringOscarSeason(url);
 		posterUrl = getMoviePosterUrl(url);
+		directorName = getDirectorName(url);
 		/*castUrls = getCastUrls(content); */
 	}
 
@@ -133,6 +135,18 @@ public class WikiMovie implements Comparable<WikiMovie> {
 		endIndex = endIndex > 0 ? endIndex : textContent.length();
 
 		return textContent.substring(startIndex, endIndex);
+	}
+
+	public static String getDirectorName(String source) throws IOException {
+		// Grabs the Movie URL for use in JSoup
+		Document doc = Jsoup.connect(source).get();
+		// Table found on right hand side of movie wiki page
+		Elements movieInfoTable = doc.select(".infobox.vevent");
+		// All the rows inside of the table
+		Elements rows = movieInfoTable.select("tr");
+		// finds director url and appends to base url
+		String director = rows.get(2).select("td").select("a").first().text();
+		return director;
 	}
 
 	public static String getDirectorWikiUrl(String source) throws IOException {
@@ -241,7 +255,6 @@ public class WikiMovie implements Comparable<WikiMovie> {
 		// finds director url and appends to base url
 		String posterUrl = rows.get(1).select("td").select("a").select("img").attr("src");
 		String httpPosterUrl = "https:" + posterUrl;
-		System.out.println(httpPosterUrl);
 		return httpPosterUrl;
 	}
 
