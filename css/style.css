@@ -2,7 +2,7 @@
 body {
   background-color: #26A65B; }
 
-h1 {
+h1.logo {
   font-family: Montserrat;
   font-size: 109px;
   text-align: center;
@@ -38,5 +38,29 @@ html {
     height: 100%;
     width: 15%;
     box-sizing: border-box; }
+
+#results {
+  margin-top: 25px; }
+  #results .movie {
+    height: 208px;
+    background-color: #fffefe;
+    box-shadow: 2px 3px 4px 0px rgba(0, 0, 0, 0.2); }
+    #results .movie img {
+      height: 100%;
+      width: 13%;
+      display: block;
+      float: left; }
+    #results .movie .text {
+      width: 87%;
+      height: 100%;
+      float: left;
+      box-sizing: border-box;
+      padding: 25px; }
+      #results .movie .text .title, #results .movie .text .subtitle, #results .movie .text .rotten-tomatoes, #results .movie .text .metacritic {
+        margin: 0; }
+      #results .movie .text .title {
+        font-size: 40px; }
+      #results .movie .text .subtitle {
+        font-size: 20px; }
 
 /*# sourceMappingURL=style.css.map */

@@ -5,18 +5,29 @@
 	<title>FilmRankr</title>
 	<link rel="stylesheet" href="css/flat-ui.min.css">
 	<link rel="stylesheet" href="css/style.css">
-	<script   src="https://code.jquery.com/jquery-3.1.0.min.js"   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
 </head>
 <body>
 	<header></header>
 	<main>
-
-		<h1>FilmRankr</h1>
+		<h1 class="logo">FilmRankr</h1>
 
 		<form id="movie-form" method="POST" class="form-control">
-		  <input type="text" autocomplete="off" name="movie-title" placeholder="Titanic" class="form-control">
-		  <input type="submit" value="Add" class="btn">
+			<input type="text" autocomplete="off" name="movie-title" placeholder="Titanic" class="form-control">
+			<input type="submit" value="Add" class="btn">
 		</form>
+		
+		<div id="results">
+			<div class="movie">
+				<img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/bc/Interstellar_film_poster.jpg/220px-Interstellar_film_poster.jpg" alt="">
+				<div class="text">
+					<h1 class="title">Interstellar</h1>
+					<h2 class="subtitle">Directed by <span class="director">Christopher Nolan</span></h2>
+					<p class="rotten-tomatoes">92%</p>
+					<p class="metacritic">89%</p>
+				</div>	
+			</div>
+		</div>
 
 	</main>
 	<footer></footer>
