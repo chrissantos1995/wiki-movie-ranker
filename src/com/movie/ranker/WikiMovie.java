@@ -71,12 +71,13 @@ public class WikiMovie implements Comparable<WikiMovie> {
 
 		metaCriticScore = getMovieRating(content, "metacritic", "(score of \\d+)");
 
-		directorUrl = getDirectorWikiUrl(url);
+		directorUrl = getDirectorWikiUrl(doc);
 
-		directorAwardCount = getDirectorAwardCount(url);
-		releaseDatePoints = releasedDuringOscarSeason(url);
-		posterUrl = getMoviePosterUrl(url);
-		directorName = getDirectorName(url);
+		directorAwardCount = getDirectorAwardCount(doc);
+		releaseDatePoints = releasedDuringOscarSeason(doc);
+		posterUrl = getMoviePosterUrl(doc);
+		directorName = getDirectorName(doc);
+
 		/*castUrls = getCastUrls(content); */
 	}
 
@@ -143,9 +144,8 @@ public class WikiMovie implements Comparable<WikiMovie> {
 		return textContent.substring(startIndex, endIndex);
 	}
 
-	public static String getDirectorName(String source) throws IOException {
-		// Grabs the Movie URL for use in JSoup
-		Document doc = Jsoup.connect(source).get();
+	public String getDirectorName(Document doc) throws IOException {
+
 		// Table found on right hand side of movie wiki page
 		Elements movieInfoTable = doc.select(".infobox.vevent");
 		// All the rows inside of the table
@@ -155,9 +155,8 @@ public class WikiMovie implements Comparable<WikiMovie> {
 		return director;
 	}
 
-	public static String getDirectorWikiUrl(String source) throws IOException {
-		// Grabs the Movie URL for use in JSoup
-		Document doc = Jsoup.connect(source).get();
+	public static String getDirectorWikiUrl(Document doc) throws IOException {
+
 		// Table found on right hand side of movie wiki page
 		Elements movieInfoTable = doc.select(".infobox.vevent");
 		// All the rows inside of the table
@@ -167,8 +166,9 @@ public class WikiMovie implements Comparable<WikiMovie> {
 		return directorWikiUrl;
 	}
 
-	public static int getDirectorAwardCount(String source) throws IOException {
-		Document doc = Jsoup.connect(getDirectorWikiUrl(source)).get();
+	public static int getDirectorAwardCount(Document mainDoc) throws IOException {
+
+		Document doc = Jsoup.connect(getDirectorWikiUrl(mainDoc)).get();
 		// Given that there is no common format for Director accolades.
 		// This code counts particular words that would be expected in 'successful' director page
 		// Hypothesis: Higher  frequency of these words -> higher chance of winning oscar
@@ -198,9 +198,8 @@ public class WikiMovie implements Comparable<WikiMovie> {
 	}
 
 
-	public static int releasedDuringOscarSeason(String source) throws IOException {
-		// Checks to see if a movie was released during September - December. If so, return true.
-		Document doc = Jsoup.connect(source).get();
+	public static int releasedDuringOscarSeason(Document doc) throws IOException {
+
 		// Table found on right hand side of movie wiki page
 		Elements movieInfoTable = doc.select(".infobox.vevent");
 		// All the rows inside of the table
@@ -251,9 +250,8 @@ public class WikiMovie implements Comparable<WikiMovie> {
 		return datePoints;
 	}
 
-	public static String getMoviePosterUrl(String source) throws IOException {
-		// Grabs the Movie URL for use in JSoup
-		Document doc = Jsoup.connect(source).get();
+	public static String getMoviePosterUrl(Document doc) throws IOException {
+
 		// Table found on right hand side of movie wiki page
 		Elements movieInfoTable = doc.select(".infobox.vevent");
 		// All the rows inside of the table
