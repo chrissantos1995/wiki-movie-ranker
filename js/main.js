@@ -6,7 +6,32 @@ $(document).ready(function() {
 		return $(movieBlockTemplate);
 	}
 
-	function movieFromJsonStr(jsonStr) {
+	function insertMovie($movieBlock) {
+
+		var movies = $("#results").children(".movie");
+
+		var i;
+		for(i = 0; i < movies.length; i++) {
+
+			var $currentMovie = $(movies[i]);
+
+			console.log("checking " + $currentMovie.find(".title").text() + " vs. " + $movieBlock.find(".title").text());
+
+			console.log($currentMovie.data("total") + " vs. " + $movieBlock.data("total"));
+
+			if($currentMovie.data("total") < $movieBlock.data("total")) {
+
+				console.log("found total less than ");
+
+				$currentMovie.before($movieBlock);
+				return;
+			}
+		}
+
+		$("#results").append($movieBlock);
+	}
+
+	function addMovieFromJsonStr(jsonStr) {
 
 		console.log("Creating movie from json str");
 
@@ -22,7 +47,7 @@ $(document).ready(function() {
 		$movieBlock.find("img").attr("src",jsonObj.imgSrc);
 		$movieBlock.data("total",jsonObj.total);
 
-		$("#results").append($movieBlock);
+		insertMovie($movieBlock);
 	}
 
 	function getMovieScoreJSON(movieName) {
@@ -38,7 +63,7 @@ $(document).ready(function() {
 		}).done(function(jsonStr) {
 
 			console.log("String received: " + jsonStr);
-			movieFromJsonStr(jsonStr);
+			addMovieFromJsonStr(jsonStr);
 
 		});
 	}
