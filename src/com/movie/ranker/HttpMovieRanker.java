@@ -39,13 +39,16 @@ public class HttpMovieRanker extends HttpServlet {
     initMap();
   }
 
-  public void doGet(HttpServletRequest request,
-                    HttpServletResponse response)
+  public void doPost(HttpServletRequest request, HttpServletResponse response)
   throws ServletException, IOException {
     // Set response content type
     response.setContentType("text/html");
 
     message = request.getParameter("movie");
+
+    WikiMovie wm = new WikiMovie(movieMap.get(message));
+
+    
 
     // Actual logic goes here.
     PrintWriter out = response.getWriter();

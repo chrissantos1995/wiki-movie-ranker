@@ -30,6 +30,7 @@ public class WikiMovie implements Comparable<WikiMovie> {
 	// Global Variables
 
 	public String url;
+	public String title;
 
 	public String directorUrl;
 	public List<String> castUrls;
@@ -60,6 +61,7 @@ public class WikiMovie implements Comparable<WikiMovie> {
 		Element content = doc.getElementById("mw-content-text");
 
 		//castUrls = getCastUrls(content);
+		title = getMovieTitle(doc.getElementById("firstHeading"));
 
 		rottenTomatoesScore = getMovieRating(content, "rotten tomatoes", "(\\d+%)");
 
@@ -256,6 +258,15 @@ public class WikiMovie implements Comparable<WikiMovie> {
 		String posterUrl = rows.get(1).select("td").select("a").select("img").attr("src");
 		String httpPosterUrl = "https:" + posterUrl;
 		return httpPosterUrl;
+	}
+
+	public String getMovieTitle(Element content) {
+
+		if(content != null) {
+			return content.text();
+		}
+
+		return null;
 	}
 
 	public int compareTo(WikiMovie that) {
