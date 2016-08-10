@@ -78,7 +78,7 @@ public class MovieRanker {
         Collections.sort(wikiMovieList, Collections.reverseOrder());
 
         for (WikiMovie wm : wikiMovieList) {
-            System.out.println(wm.url);
+            System.out.println(wm.title);
         }
     }
 }
