@@ -54,6 +54,10 @@ public class WikiMovie implements Comparable<WikiMovie> {
 
 	public void init() throws IOException {
 
+		// Error checking
+		if(url == null)
+			return;
+
 		//download and parse the document
 		Document doc = Jsoup.connect(url).get();
 
@@ -103,7 +107,7 @@ public class WikiMovie implements Comparable<WikiMovie> {
 				String score = firstRegexMatch(ratingRegex, targetSentence);
 
 				if (score == null)
-					break;
+					continue;
 
 				return getInteger(score);
 			}

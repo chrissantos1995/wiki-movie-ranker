@@ -6,6 +6,25 @@ $(document).ready(function() {
 		return $(movieBlockTemplate);
 	}
 
+	function movieFromJsonStr(jsonStr) {
+
+		console.log("Creating movie from json str");
+
+		var jsonObj = JSON.parse(jsonStr);
+		var $movieBlock = createMovieBlock();
+
+		console.log("movie block created");
+
+		$movieBlock.find(".title").text(jsonObj.title);
+		$movieBlock.find(".director").text(jsonObj.director);
+		$movieBlock.find(".rotten-tomatoes").text(jsonObj.rottenTomatoes);
+		$movieBlock.find(".metacritic").text(jsonObj.metacritic);
+		$movieBlock.find("img").attr("src",jsonObj.imgSrc);
+		$movieBlock.data("total",jsonObj.total);
+
+		$("#results").append($movieBlock);
+	}
+
 	function getMovieScoreJSON(movieName) {
 
 		$.ajax({
@@ -16,12 +35,20 @@ $(document).ready(function() {
 				movie : movieName
 			}
 
-		}).done(function(data) {
+		}).done(function(jsonStr) {
 
-			console.log(data);
+			console.log("String received: " + jsonStr);
+			movieFromJsonStr(jsonStr);
+
 		});
 	}
 
-	getMovieScoreJSON("boyhood");
+	$("#movie-form").submit(function(e) {
+
+		e.preventDefault();
+
+		queryString = $("#movie-form-text").val();
+		getMovieScoreJSON(queryString);
+	});
 
 });

@@ -48,11 +48,30 @@ public class HttpMovieRanker extends HttpServlet {
 
     WikiMovie wm = new WikiMovie(movieMap.get(message));
 
-    
+    String movieJsonString = getMovieJsonString(wm);
 
     // Actual logic goes here.
     PrintWriter out = response.getWriter();
-    out.println("<h1>" + "url: " +  movieMap.get(message) + "</h1>");
+    out.println(movieJsonString);
+  }
+
+  public void doGet(HttpServletRequest request, HttpServletResponse response)
+  throws ServletException, IOException {
+    doPost(request,response);
+  }
+  
+  public String getMovieJsonString(WikiMovie wm) {
+
+    JSONObject jsonObj = new JSONObject(); 
+
+    jsonObj.put("title",wm.title);
+    jsonObj.put("director",wm.directorName);
+    jsonObj.put("rottenTomatoes",wm.rottenTomatoesScore);
+    jsonObj.put("metacritic",wm.metaCriticScore);
+    jsonObj.put("imgSrc",wm.posterUrl);
+    jsonObj.put("total",wm.rottenTomatoesScore + wm.metaCriticScore + wm.directorAwardCount + wm.releaseDatePoints);
+
+    return jsonObj.toJSONString();
   }
 
   public void destroy() {
