@@ -46,11 +46,14 @@ html {
     background-color: #fffefe;
     box-shadow: 2px 3px 4px 0px rgba(0, 0, 0, 0.2);
     margin-bottom: 25px; }
-    #results .movie img {
+    #results .movie img.poster {
       height: 100%;
       width: 13%;
       display: block;
       float: left; }
+    #results .movie img.logo {
+      width: 23px;
+      margin-right: 7px; }
     #results .movie .text {
       width: 87%;
       height: 100%;
@@ -63,5 +66,7 @@ html {
         font-size: 40px; }
       #results .movie .text .subtitle {
         font-size: 20px; }
+      #results .movie .text .score {
+        margin-bottom: 0; }
 
 /*# sourceMappingURL=style.css.map */

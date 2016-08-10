@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-	var movieBlockTemplate = '<div class="movie"> <img src="" alt=""> <div class="text"> <h1 class="title"></h1> <h2 class="subtitle">Directed by <span class="director"></span></h2> <p class="rotten-tomatoes"></p> <p class="metacritic"></p> </div> </div>';
+	var movieBlockTemplate = '<div class="movie"> <img class="poster" src="" alt=""> <div class="text"> <h1 class="title"></h1> <h2 class="subtitle">Directed by <span class="director"></span></h2> <p class="score"><img class="logo" src="http://d3biamo577v4eu.cloudfront.net/static/images/trademark/fresh.png"><span class="rotten-tomatoes"></span></p> <p class="score"><img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Metacritic.svg/88px-Metacritic.svg.png"><span class="metacritic"></span></p> </div> </div>';
 
 	function createMovieBlock() {
 		return $(movieBlockTemplate);
@@ -42,9 +42,9 @@ $(document).ready(function() {
 
 		$movieBlock.find(".title").text(jsonObj.title);
 		$movieBlock.find(".director").text(jsonObj.director);
-		$movieBlock.find(".rotten-tomatoes").text(jsonObj.rottenTomatoes);
-		$movieBlock.find(".metacritic").text(jsonObj.metacritic);
-		$movieBlock.find("img").attr("src",jsonObj.imgSrc);
+		$movieBlock.find(".rotten-tomatoes").text(jsonObj.rottenTomatoes + "%");
+		$movieBlock.find(".metacritic").text(jsonObj.metacritic + "/100");
+		$movieBlock.find("img.poster").attr("src",jsonObj.imgSrc);
 		$movieBlock.data("total",jsonObj.total);
 
 		insertMovie($movieBlock);
