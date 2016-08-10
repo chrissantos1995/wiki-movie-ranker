@@ -45,6 +45,11 @@ public class MovieRanker {
         movieMap.put("star wars the force awakens","https://en.wikipedia.org/wiki/Star_Wars:_The_Force_Awakens");
         movieMap.put("gone girl","https://en.wikipedia.org/wiki/Gone_Girl_(film)");
         movieMap.put("boyhood","https://en.wikipedia.org/wiki/Boyhood_(film)");
+        movieMap.put("the dark knight","https://en.wikipedia.org/wiki/The_Dark_Knight_(film)");
+        movieMap.put("guardians of the galaxy","https://en.wikipedia.org/wiki/Guardians_of_the_Galaxy_(film)");
+        movieMap.put("whiplash","https://en.wikipedia.org/wiki/Whiplash_(2014_film)");
+        movieMap.put("pulp fiction", "https://en.wikipedia.org/wiki/Pulp_Fiction");
+        movieMap.put("avatat", "https://en.wikipedia.org/wiki/Avatar_(2009_film)");
     }
 
     public static void main(String[] args) throws IOException {
